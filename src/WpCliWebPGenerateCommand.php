@@ -73,19 +73,19 @@ class WpCliWebPGenerateCommand extends \WP_CLI_Command
         }
     }
 
-    protected static function listImagesRecursively($root_path)
+    protected static function listImagesRecursively($rootPath)
     {
-        if (is_dir($root_path)) {
+        if (is_dir($rootPath)) {
             $files = [];
-            foreach (scandir($root_path) as $path) {
+            foreach (scandir($rootPath) as $path) {
                 if (!in_array($path, ['.', '..'])) {
-                    $path  = untrailingslashit($root_path) . DIRECTORY_SEPARATOR . $path;
+                    $path  = untrailingslashit($rootPath) . DIRECTORY_SEPARATOR . $path;
                     $files = array_merge($files, self::listImagesRecursively($path));
                 }
             }
             return $files;
-        } elseif (is_file($root_path) && self::isImagePath($root_path)) {
-            return [$root_path];
+        } elseif (is_file($rootPath) && self::isImagePath($rootPath)) {
+            return [$rootPath];
         } else {
             return [];
         }

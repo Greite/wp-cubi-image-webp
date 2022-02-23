@@ -2,8 +2,6 @@
 
 namespace Globalis\WP\Cubi\ImageWebp;
 
-use \GdImage;
-
 class ImageWebp
 {
     public static function generateWebPMainFile($file)
