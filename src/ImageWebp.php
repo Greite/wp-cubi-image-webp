@@ -57,9 +57,9 @@ class ImageWebp
      *
      * @param string $filePath
      * @param string $mimeType
-     * @return GdImage|null Return the GdImage on success, false otherwise
+     * @return \GdImage|null Return the GdImage on success, false otherwise
      */
-    public static function generateGdImage(string $filePath, string $mimeType = ''): ?GdImage
+    public static function generateGdImage(string $filePath, string $mimeType = ''): ?\GdImage
     {
         if ($mimeType === '') {
             $mimeType = mime_content_type($filePath);
@@ -89,17 +89,22 @@ class ImageWebp
     /**
      * Convert and write the webp image to the upload directory
      *
-     * @param GdImage $gdImage
+     * @param \GdImage $gdImage
      * @param string $filePath
      * @return void
      */
-    public static function writeWebpImage(GdImage $gdImage, string $filePath, bool $force = false): bool
+    public static function writeWebpImage(\GdImage $gdImage, string $filePath, bool $force = false): bool
     {
         if (file_exists($filePath) && !$force) {
             return false;
         }
 
         $image = fopen($filePath, 'w+');
+
+        if (!$image) {
+            return false;
+        }
+
         imagewebp($gdImage, $image);
 
         return true;
