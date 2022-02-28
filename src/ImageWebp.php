@@ -24,7 +24,7 @@ class ImageWebp
 
     public static function generateWebPSubFile($metadata)
     {
-        foreach ($metadata['sizes'] as $file) {
+        foreach ($metadata['sizes'] ?? [] as $file) {
             $uploadDir = wp_upload_dir();
 
             $gdImage = self::generateGdImage($uploadDir['path'] . '/' . $file['file'], $file['mime-type']);
@@ -57,9 +57,9 @@ class ImageWebp
      *
      * @param string $filePath
      * @param string $mimeType
-     * @return \GdImage|null Return the GdImage on success, false otherwise
+     * @return \GdImage|false Return the GdImage on success, false otherwise
      */
-    public static function generateGdImage(string $filePath, string $mimeType = ''): ?\GdImage
+    public static function generateGdImage(string $filePath, string $mimeType = '')
     {
         if ($mimeType === '') {
             $mimeType = mime_content_type($filePath);
