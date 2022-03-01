@@ -26,6 +26,14 @@ add_filter('wp_handle_upload', [__NAMESPACE__ . '\\ImageWebp', 'generateWebPMain
 add_filter('wp_generate_attachment_metadata', [__NAMESPACE__ . '\\ImageWebp', 'generateWebPSubFile']);
 add_filter('wp_delete_file', [__NAMESPACE__ . '\\ImageWebp', 'deleteWebPSubFile']);
 
+$rewriteURLs = apply_filter('wp-cubi-image-webp\rewrite_urls');
+
+if ($rewriteURLs) {
+    require_once __DIR__ . '/src/RewriteURLs.php';
+    add_filter('wp_get_attachment_url', [__NAMESPACE__ . '\\RewriteURLs', 'rewriteURL']);
+    add_filter('wp_calculate_image_srcset', [__NAMESPACE__ . '\\RewriteURLs', 'rewriteSrcset']);
+}
+
 if (!class_exists('WP_CLI')) {
     return;
 }
