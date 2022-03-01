@@ -12,10 +12,20 @@ class RewriteURLs
      */
     public static function rewriteURL($url): string
     {
-        var_dump($url);die;
-        $file = '';
+        $file = preg_replace('|^(https?:)?//[^/]+(/?.*)|i', '$2', $url);
+        $file = ltrim($file, '/');
 
-        return $url;
+        if (!file_exists($file)) {
+            return $url;
+        }
+
+        $fileWebP = $file . '.webp';
+
+        if (!file_exists($fileWebP)) {
+            return $url;
+        }
+
+        return str_replace($file, $fileWebP, $url);
     }
 
 
