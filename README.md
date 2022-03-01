@@ -1,8 +1,8 @@
-# [wp-cubi-image-webp](https://github.com/globalis-ms/wp-cubi-image-webp)
+# [wp-cubi-image-webp](https://github.com/Greite/wp-cubi-image-webp)
 
 [![Build Status](https://travis-ci.org/globalis-ms/wp-cubi-image-webp.svg?branch=master)](https://travis-ci.org/globalis-ms/wp-cubi-image-webp)
 [![Latest Stable Version](https://poser.pugx.org/globalis/wp-cubi-image-webp/v/stable)](https://packagist.org/packages/globalis/wp-cubi-image-webp)
-[![License](https://poser.pugx.org/globalis/wp-cubi-image-webp/license)](https://github.com/globalis-ms/wp-cubi-image-webp/blob/master/LICENSE.md)
+[![License](https://poser.pugx.org/globalis/wp-cubi-image-webp/license)](https://github.com/Greite/wp-cubi-image-webp/blob/master/LICENSE.md)
 
 Standalone image webp converter and provider WordPress plugin
 
@@ -20,7 +20,7 @@ The PHP [**gd**](https://www.php.net/manual/en/book.image.php) extension must be
 
 - `composer require globalis/wp-cubi-image-webp`
 
-## Configuration
+## Configuration using .htaccess
 
 Insert this chunk of code into your `.htaccess`
 ```apacheconf
@@ -32,6 +32,10 @@ Insert this chunk of code into your `.htaccess`
   RewriteRule (.+)\.(jpg|jpeg|png)$ $1.$2.webp [T=image/webp,NC,L]
 </IfModule>
 ```
+
+## Configuration using URLs rewrite
+
+Define ```WP_CUBI_IMAGE_WEBP_REWRITE_URL``` to ```true``` in your functions.php
 
 ## Bulk optimization
 
