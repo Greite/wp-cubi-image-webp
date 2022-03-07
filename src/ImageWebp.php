@@ -109,4 +109,14 @@ class ImageWebp
 
         return true;
     }
+
+    /**
+     * Check if browser accept webp files
+     *
+     * @return bool
+     */
+    public static function browserAcceptWebp(): bool
+    {
+        return strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false;
+    }
 }

@@ -30,7 +30,7 @@ if (!defined('WP_CUBI_IMAGE_WEBP_REWRITE_URL')) {
     define('WP_CUBI_IMAGE_WEBP_REWRITE_URL', false);
 }
 
-if (WP_CUBI_IMAGE_WEBP_REWRITE_URL && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
+if (WP_CUBI_IMAGE_WEBP_REWRITE_URL && ImageWebp::browserAcceptWebp()) {
     require_once __DIR__ . '/src/RewriteURLs.php';
     add_filter('wp_get_attachment_url', [__NAMESPACE__ . '\\RewriteURLs', 'rewriteURL']);
     add_filter('wp_calculate_image_srcset', [__NAMESPACE__ . '\\RewriteURLs', 'rewriteSrcset']);
